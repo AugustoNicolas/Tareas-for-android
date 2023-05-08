@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "871080411934",
+    "project_id": "examen2-reactnative",
+    "storage_bucket": "examen2-reactnative.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871080411934:android:9ac5c3c50c97db230aff0f",
+        "android_client_info": {
+          "package_name": "com.examen_reactnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871080411934-gnq1pu35hampp23hs9udc3beu1j3828a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.examen_reactnative",
+            "certificate_hash": "3f8f31eaee07f9a52bdf8eeb36e8b25ff58d953c"
+          }
+        },
+        {
+          "client_id": "871080411934-ho7v359r2osl1mrjjaqaqs0bf53ifuhl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.examen_reactnative",
+            "certificate_hash": "ba3778a46fdb0de7339c794c73a1efa2b3544bb2"
+          }
+        },
+        {
+          "client_id": "871080411934-fb6e5dv6o4d091vrsh227pk8nl6blakn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYA8Ye3VA3eiZmGdAY9ojT4Q2WP_YmNGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871080411934-fb6e5dv6o4d091vrsh227pk8nl6blakn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
