@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AntDesign } from '@expo/vector-icons'
 import { TasksProvider } from './models/task';
 
+import * as Notifications from 'expo-notifications';
 import messaging from '@react-native-firebase/messaging';
 
 const Stack = createNativeStackNavigator();

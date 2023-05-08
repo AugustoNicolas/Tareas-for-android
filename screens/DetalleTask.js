@@ -1,3 +1,4 @@
+import React, { useLayoutEffect } from 'react';
 import { StyleSheet, View,Text,Image,Button } from 'react-native';
 import MapView, {Marker, Polyline} from 'react-native-maps';
 
@@ -5,13 +6,20 @@ export const DetalleTask = ({route, navigation}) => {
     
     
     const item = route.params.item 
-    navigation.setOptions({ title: item.nombre })
+    //navigation.setOptions({ title: item.nombre })
     let temDate = new Date(route.params.item.vencimiento)
     let fDate = temDate.getDate() + '/'+(temDate.getMonth() + 1) + '/' + temDate.getFullYear();
 
+    useLayoutEffect(() => {
+      navigation.setOptions({ title: item.nombre });
+    }, [navigation, item.nombre]);
+
     const goMap = () => {
       navigation.navigate('DetalleMap',{
-        origin : item.origin,
+        origin : {
+          latitude : item.origin[0].latitude,
+          longitude : item.origin[0].longitude
+      },
         nombre : item.nombre
       })
     }
@@ -30,7 +38,7 @@ export const DetalleTask = ({route, navigation}) => {
                 }
             />
             <View style={styles.btn}>
-             <Button style={styles.button}  onPress={goMap} title='Ver ubicacion'/>
+             <Button style={styles.button}  onPress={() => goMap()} title='Ver ubicacion'/>
           </View>
         </View>
     )

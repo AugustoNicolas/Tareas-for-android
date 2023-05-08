@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import {  View, StyleSheet} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Polyline} from 'react-native-maps';
 
 export const MapDetalle = ({route, navigation}) =>{
     
   const origin = route.params.origin
-  navigation.setOptions({ title: route.params.nombre })
+  console.log(origin.latitude)
+  //navigation.setOptions({ title: route.params.nombre })
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: "mapa de: " + route.params.nombre });
+  }, [navigation,  route.params.nombre]);
 
     return(
         <View style={styles.container}>
