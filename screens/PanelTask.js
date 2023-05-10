@@ -31,6 +31,7 @@ export const PanelTask = ({navigation}) =>{
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
+
     });
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
@@ -43,6 +44,22 @@ export const PanelTask = ({navigation}) =>{
     };
   }, []);
 
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const { screen, params,nombre, detalle, vencimiento, nota } = response.notification.request.content.data;
+      const item = {params,nombre, detalle, vencimiento, nota}
+      console.log(item)
+      navigation.navigate(screen, {
+        item : item
+      });
+    });
+  
+    return () => subscription.remove();
+
+  }, []);
+  
+
     //*************  ************ */
 
   const { tasks, putData } = useContext(tasksContext)
@@ -50,6 +67,12 @@ export const PanelTask = ({navigation}) =>{
   useEffect(() => {
     const inicio = async() => {
       await putData()
+    }
+    inicio()
+  }, []);
+
+  useEffect(() => {
+    const inicio = async() => {
       if (tasks.length > 0) {
         for (const item of tasks)  {
           if (item.vencimiento) {
@@ -63,14 +86,14 @@ export const PanelTask = ({navigation}) =>{
                 vencimiento.getDate() === hoy.getDate()) {
               console.log("¡Es hoy!");
               await schedulePushNotification(item);
-              break; 
+              //break; 
             }
           }
         } 
       }
     }
     inicio()
-  }, []);
+  }, [tasks]);
 
 
   const PaRenderizar = (ItemData) =>{
@@ -128,7 +151,13 @@ const styles = StyleSheet.create({
       content: {
         title: "Tarea aputno de vencer! ⌛",
         body: item.nombre,
-        data: { data: 'goes here' },
+        //data: { data: 'goes here' },
+        data: { screen: 'detalle', params: item.vencimiento,
+          nombre : item.nombre,
+          detalle : item.detalle,
+          vencimiento : item.vencimiento,
+          nota : item.nota
+        },
         sound: 'default'
       },
       trigger: { seconds: 2 },
